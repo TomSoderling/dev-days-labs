@@ -122,15 +122,17 @@ Notice that we call **OnPropertyChanged();** whenever the value changes. The Xam
 
 #### ObservableCollection of Speaker
 
-We will use an **ObservableCollection<Speaker>** that will be cleared and then loaded with speakers. We will use an **ObservableCollection** because it has built-in support for **CollectionChanged** events when we Add or Remove from it. This is very nice so we don't have to call **OnPropertyChanged** each time.
+We will use an **ObservableCollection<Speaker>** that will be cleared and then loaded with speakers. We will use this data collection because it has built-in support for **CollectionChanged** events when we Add or Remove from it. This is very nice so we don't have to call **OnPropertyChanged** each time.
 
-5.) Above the constructor of the SpeakersViewModel class definition, declare an auto-property:
+5.) In the SpeakersViewModel class definition, declare an auto-property:
 
 ```csharp
 public ObservableCollection<Speaker> Speakers { get; set; }
 ```
 
-Inside of the constructor, create a new instance of the `ObservableCollection`:
+6.) Create constructor
+
+7.) Inside of the constructor, create a new instance of the `ObservableCollection`:
 
 ```csharp
 public SpeakersViewModel()
@@ -143,7 +145,7 @@ public SpeakersViewModel()
 
 We are now set to create a method named **GetSpeakers** which will retrieve the speaker data from the internet. We will first implement this with a simply HTTP request, but later update it to grab and sync the data from Azure!
 
-First, create a method called **GetSpeakers** which is of type *async Task* (it is a Task because it is using Async methods):
+8.) First, create a method called **GetSpeakers** which is of type *async Task* (it is a Task because it is using Async methods):
 
 ```csharp
 private async Task GetSpeakers()
@@ -153,7 +155,7 @@ private async Task GetSpeakers()
 ```
 The following code will be written INSIDE of this method:
 
-First is to check if we are already grabbing data:
+9.) First is to check if we are already grabbing data:
 
 ```csharp
 private async Task GetSpeakers()
@@ -189,9 +191,9 @@ private async Task GetSpeakers()
 }
 ```
 
-Notice, that we set *IsBusy* to true and then false when we start to call to the server and when we finish.
+Notice, that we set *IsBusy* to true when we start the call to the server and then to false when we finish.
 
-Now, we will use *HttpClient* to grab the json from the server inside of the **try** block.
+11.) Now, we will use *HttpClient* to grab the json from the server inside of the **try** block.
 
  ```csharp
 using(var client = new HttpClient())
@@ -201,20 +203,21 @@ using(var client = new HttpClient())
 } 
 ```
 
-Still inside of the **using**, we will Deserialize the json and turn it into a list of Speakers with Json.NET:
+12.) Still inside of the **using**, we will Deserialize the json and turn it into a list of Speakers with Json.NET:
 
 ```csharp
 var items = JsonConvert.DeserializeObject<List<Speaker>>(json);
 ```
 
-Still inside of the **using**, we will clear the speakers and then load them into the ObservableCollection:
+13.) Still inside of the **using**, we will clear the speakers and then load them into the ObservableCollection:
 
 ```csharp
 Speakers.Clear();
 foreach (var item in items)
     Speakers.Add(item);
 ```
-If anything goes wrong the **catch** will save the exception and AFTER the finally block we can pop up an alert:
+
+14.) If anything goes wrong the **catch** will save the exception and AFTER the finally block we can pop up an alert:
 
 ```csharp
 if (error != null)
