@@ -28,7 +28,7 @@ This can be done by **Right-clicking** on the **Solution** and clicking on **Res
 
 ### Model
 
-We will be pulling down information about speakers. Open the **DevDaysSpeakers/Model/Speaker.cs** file and add the following properties inside of the **Speaker** class:
+1.) We will be pulling down information about speakers. Open the **DevDaysSpeakers/Model/Speaker.cs** file and add the following properties inside of the **Speaker** class:
 
 ```csharp
 public string Id { get; set; }
@@ -47,7 +47,7 @@ The **SpeakersViewModel.cs** will provide all of the functionality for how our m
 
 *INotifyPropertyChanged* is important for data binding in MVVM Frameworks. This is an interface that, when implemented, lets our view know about changes to the model.
 
-Update:
+2.) Update:
 
 ```csharp
 public class SpeakersViewModel
@@ -71,7 +71,7 @@ Simply right click and tap **Implement Interface**, which will add the following
 public event PropertyChangedEventHandler PropertyChanged;
 ```
 
-We will code a helper method named **OnPropertyChanged** that will raise the **PropertyChanged** event (see below). We will invoke the helper method whenever a property changes.
+3.) We will code a helper method named **OnPropertyChanged** that will raise the **PropertyChanged** event (see below). We will invoke the helper method whenever a property changes.
 
 ##### C# 6 (Visual Studio 2015 or Xamarin Studio on Mac)
 ```csharp
@@ -96,7 +96,7 @@ private void OnPropertyChanged([CallerMemberName] string name = null)
 Now, we can call **OnPropertyChanged();** whenever a property updates. Let's create our first property now.
 
 #### IsBusy
-We will create a backing field and accessors for a boolean property. This will let our view know that our view model is busy so we don't perform duplicate operations (like allowing the user to refresh the data multiple times).
+4.) We will create a backing field and accessors for a boolean property. This will let our view know that our view model is busy so we don't perform duplicate operations (like allowing the user to refresh the data multiple times).
 
 First, create the backing field:
 
@@ -124,7 +124,7 @@ Notice that we call **OnPropertyChanged();** whenever the value changes. The Xam
 
 We will use an **ObservableCollection<Speaker>** that will be cleared and then loaded with speakers. We will use an **ObservableCollection** because it has built-in support for **CollectionChanged** events when we Add or Remove from it. This is very nice so we don't have to call **OnPropertyChanged** each time.
 
-Above the constructor of the SpeakersViewModel class definition, declare an auto-property:
+5.) Above the constructor of the SpeakersViewModel class definition, declare an auto-property:
 
 ```csharp
 public ObservableCollection<Speaker> Speakers { get; set; }
