@@ -75,24 +75,35 @@ namespace DevDaysSpeakers.ViewModel
 
             // TODO: 10.) scaffolding for try/catch/finally block
             Exception error = null;
+            //try
+            //{
+            //    // call to server
+            //    IsBusy = true;
+
+            //    // TODO: 11.) grab JSON from server
+            //    using (var client = new HttpClient())
+            //    {
+            //        var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+
+            //        // TODO: 12.) deserialize the JSON to list of speakers
+            //        var speakers = JsonConvert.DeserializeObject<List<Speaker>>(json);
+
+            //        // TODO: 13.) load speakers into ObservableCollection
+            //        Speakers.Clear();
+            //        foreach (var speaker in speakers)
+            //            Speakers.Add(speaker);
+            //    }
+            //}
             try
             {
-                // call to server
                 IsBusy = true;
 
-                // TODO: 11.) grab JSON from server
-                using (var client = new HttpClient())
-                {
-                    var json = await client.GetStringAsync("http://demo4404797.mockable.io/speakers");
+                var service = DependencyService.Get<AzureService>();
+                var items = await service.GetSpeakers();
 
-                    // TODO: 12.) deserialize the JSON to list of speakers
-                    var speakers = JsonConvert.DeserializeObject<List<Speaker>>(json);
-
-                    // TODO: 13.) load speakers into ObservableCollection
-                    Speakers.Clear();
-                    foreach (var speaker in speakers)
-                        Speakers.Add(speaker);
-                }
+                Speakers.Clear();
+                foreach (var item in items)
+                    Speakers.Add(item);
             }
             catch (Exception ex)
             {
@@ -106,6 +117,19 @@ namespace DevDaysSpeakers.ViewModel
             // TODO: 14.) show exception message if something goes wrong
             if (error != null)
                 await Application.Current.MainPage.DisplayAlert("Error!", error.Message, "OK");
+
+            // TODO: 35.) "try" getting speakers from Azure instead
+            //try
+            //{
+            //    IsBusy = true;
+
+            //    var service = DependencyService.Get<AzureService>();
+            //    var items = await service.GetSpeakers();
+
+            //    Speakers.Clear();
+            //    foreach (var item in items)
+            //        Speakers.Add(item);
+            //}
         }
     }
 }

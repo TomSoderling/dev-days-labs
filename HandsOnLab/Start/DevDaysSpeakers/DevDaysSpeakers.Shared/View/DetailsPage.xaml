@@ -21,8 +21,8 @@
 	
 <!-- TODO: 27.) buttons for fancy things -->
 <!--<Button Text="Speak" x:Name="ButtonSpeak"/>
-<Button Text="Go to Website" x:Name="ButtonWebsite"/>-->
-
+<Button Text="Go to Website" x:Name="ButtonWebsite"/>
+<Button x:Name="ButtonSpecial" Text="Analyze" />-->
 	
 
     <ScrollView Padding="10">
@@ -36,10 +36,9 @@
 			
             <Button x:Name="ButtonSpeak" Text="Speak" />
             <Button x:Name="ButtonWebsite" Text="Go to Website" />
+			<Button x:Name="ButtonSpecial" Text="Analyze" />
         </StackLayout>
     </ScrollView>
-
-
 
 
 </ContentPage>

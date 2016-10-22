@@ -20,6 +20,8 @@
       <DependentUpon>SpeakersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\SpeakerCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\EmotionService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\DetailsPage.xaml">
