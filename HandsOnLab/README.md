@@ -450,7 +450,7 @@ In the above code we check to see if the selected item is not null and then use 
 
 ### Text to Speech
 
-If we open up **DetailsPage.xaml.cs** we can now add a few more click handlers. Let's start with the button named "ButtonSpeak", where we will use the [Text To Speech Plugin](https://github.com/jamesmontemagno/TextToSpeechPlugin) to read back the speaker's description.
+If we open up **DetailsPage.xaml.cs** we can now add a few more click handlers. Let's start with the button named `ButtonSpeak`", where we will use the [Text To Speech Plugin](https://github.com/jamesmontemagno/TextToSpeechPlugin) to read back the speaker's description.
 
 28.) In the constructor, add a clicked handler below the BindingContext:
 
@@ -470,13 +470,13 @@ private void ButtonSpeak_Clicked(object sender, EventArgs e)
 ### Open Website
 Xamarin.Forms itself has some nice APIs built right in for cross platform functionality, such as opening a URL in the default browser.
 
-Let's add another clicked handler, but this time for `ButtonWebsite`:
+30.) Let's add another clicked handler, but this time for the button named `ButtonWebsite`:
 
 ```csharp
 ButtonWebsite.Clicked += ButtonWebsite_Clicked;
 ```
 
-Then, we can use the Device class to call the OpenUri method:
+31.) Then, we can use the Device class to call the OpenUri method:
 
 ```csharp
 private void ButtonWebsite_Clicked(object sender, EventArgs e)
@@ -491,7 +491,7 @@ Now, we should be all set to compile and run just like before!
 
 ## Connect to Azure Mobile Apps
 
-Of course being able grab data from a RESTful end point is great, but what about a full back end? This is where Azure Mobile Apps comes in. Let's upgrade our application to use an Azure Mobile Apps back end.
+Of course being able grab data from a RESTful end point is great, but what about a full back end? This is where Microsoft Azure Mobile Apps comes in. Let's upgrade our application to use this new back end.
 
 Head to [http://portal.azure.com](http://portal.azure.com) and register for an account.
 
