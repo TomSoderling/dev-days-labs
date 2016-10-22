@@ -266,19 +266,18 @@ private async Task GetSpeakers()
 }
 ```
 
-Our main method for getting data is now complete!
+Our main method for getting data is now complete! But instead of calling this method directly, we will expose it with a **Command**.
 
-#### GetSpeakers Command
+#### GetSpeakers Command 
+A Command has an interface that knows what method to invoke and has an optional way of describing if the Command is enabled.
 
-Instead of invoking this method directly, we will expose it with a **Command**. A Command has an interface that knows what method to invoke and has an optional way of describing if the Command is enabled.
-
-Create a new Command called **GetSpeakersCommand**:
+15.) Create a new Command called **GetSpeakersCommand**:
 
 ```csharp
 public Command GetSpeakersCommand { get; set; }
 ```
 
-Inside of the `SpeakersViewModel` constructor, create the `GetSpeakersCommand` and pass it two methods: one to invoke when the command is executed and another that determines whether the command is enabled. Both methods can be implemented as lambda expressions as shown below:
+16.) Inside of the `SpeakersViewModel` constructor, instantiate the `GetSpeakersCommand` and pass it two methods: one to invoke when the command is executed and another that determines whether the command can be invoked at all. Both methods can be implemented as lambda expressions as shown below:
 
 ```csharp
 GetSpeakersCommand = new Command(
@@ -286,7 +285,7 @@ GetSpeakersCommand = new Command(
                 () => !IsBusy);
 ```
 
-The only modification that we will have to make is when we set the IsBusy property, as we will want to re-evaluate the enabled function that we created. In the **set** of **IsBusy** simply invoke the **ChangeCanExecute** method on the **GetSpeakersCommand** as shown below:
+17.) The only modification that we will have to make is when we set the IsBusy property, as we will want to re-evaluate the enabled function that we created. In the **set** of **IsBusy** simply invoke the **ChangeCanExecute** method on the **GetSpeakersCommand** as shown below:
 
 ```csharp
 set
@@ -303,7 +302,7 @@ It is now finally time to build out our first Xamarin.Forms user interface in th
 
 ### SpeakersPage.xaml
 
-For the first page we will add a few vertically-stacked controls to the page. We can use a StackLayout to do this. Between the `ContentPage` tags add the following:
+18.) For the first page we will add a few vertically-stacked controls to the page. We can use a StackLayout to do this. Between the `ContentPage` tags add the following:
 
 ```xml
  <StackLayout Spacing="0">
