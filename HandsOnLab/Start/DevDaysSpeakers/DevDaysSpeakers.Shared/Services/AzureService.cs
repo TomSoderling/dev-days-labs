@@ -25,7 +25,7 @@ namespace DevDaysSpeakers.Services
                 return;
 
             // TODO: 32.) address for Azure back end
-            var appUrl = "https://DeleteMePlease.azurewebsites.net";
+            var appUrl = "https://[END_POINT_NAME_HERE].azurewebsites.net";
 
             //Create our client
             Client = new MobileServiceClient(appUrl);
@@ -51,12 +51,12 @@ namespace DevDaysSpeakers.Services
 
         public async Task<IEnumerable<Speaker>> GetSpeakers()
         {
-            //return new List<Speaker>();
+            return new List<Speaker>();
 
             // TODO: 33.) get speakers from SQLite database table
-            await Initialize();
-            await SyncSpeakers();
-            return await table.OrderBy(s => s.Name).ToEnumerableAsync();
+            //await Initialize();
+            //await SyncSpeakers();
+            //return await table.OrderBy(s => s.Name).ToEnumerableAsync();
         }
 
       
@@ -65,14 +65,13 @@ namespace DevDaysSpeakers.Services
             try
             {
                 // TODO: 34.) push then pull
-                await Client.SyncContext.PushAsync();
-                await table.PullAsync("allSpeakers", table.CreateQuery());
+                //await Client.SyncContext.PushAsync();
+                //await table.PullAsync("allSpeakers", table.CreateQuery());
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Unable to sync speakers, that is alright as we have offline capabilities: " + ex);
             }
-
         }
     }
 }

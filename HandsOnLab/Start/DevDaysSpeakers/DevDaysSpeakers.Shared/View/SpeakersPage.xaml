@@ -36,19 +36,4 @@
 </ListView.ItemTemplate>	-->
 
 
-    <StackLayout Spacing="0">
-        <Button Command="{Binding GetSpeakersCommand}" Text="Sync Speakers" />
-        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
-        <ListView x:Name="ListViewSpeakers" ItemsSource="{Binding Speakers}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell Detail="{Binding Title}"
-                               ImageSource="{Binding Avatar}"
-                               Text="{Binding Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-    </StackLayout>
-
 </ContentPage>

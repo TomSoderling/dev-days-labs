@@ -22,30 +22,21 @@ namespace DevDaysSpeakers.View
             BindingContext = this.speaker;
 
             // TODO: 28.) speak button click handler
-            ButtonSpeak.Clicked += ButtonSpeak_Clicked;
+            //ButtonSpeak.Clicked += ButtonSpeak_Clicked;
 
             // TODO: 30.) website button click handler. do anonymous function this time.
-            ButtonWebsite.Clicked += (sender, e) =>
-            {
-                // DELETE ALL THIS UNCOMMENTED STUFF
-                if (speaker.Website.StartsWith("http"))
-                    Device.OpenUri(new Uri(speaker.Website));
-            };
+            //ButtonWebsite.Clicked 
 
+
+            // move ^
             //if (speaker.Website.StartsWith("http"))
             //    Device.OpenUri(new Uri(speaker.Website));
 
 
-            ButtonSpecial.Clicked += ButtonSpecial_Clicked;
+            //ButtonSpecial.Clicked += ButtonSpecial_Clicked;
         }
 
 
-
-        // DELETE THIS METHOD
-        void ButtonSpeak_Clicked(object sender, EventArgs e)
-        {
-            CrossTextToSpeech.Current.Speak(this.speaker.Description);
-        }
 
 
         // TODO: 29.) speak!
@@ -81,34 +72,34 @@ namespace DevDaysSpeakers.View
 
 
 
-        private async void ButtonSpecial_Clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                // Display happiness level
-                var level = await EmotionService.GetAverageHappinessScoreAsync(this.speaker.Avatar);
+        //private async void ButtonSpecial_Clicked(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Display happiness level
+        //        var level = await EmotionService.GetAverageHappinessScoreAsync(this.speaker.Avatar);
 
-                var buttonText = "YAY!";
-                if (level < Config.HAPPINESS_LEVEL_THRESHOLD)
-                    buttonText = "Awww";
+        //        var buttonText = "YAY!";
+        //        if (level < Config.HAPPINESS_LEVEL_THRESHOLD)
+        //            buttonText = "Awww";
 
-                await DisplayAlert("Happiness Level", EmotionService.GetHappinessMessage(level), buttonText);
+        //        await DisplayAlert("Happiness Level", EmotionService.GetHappinessMessage(level), buttonText);
 
 
 
-                // Display more emotion scores
-                //var scores = await EmotionService.GetAverageEmotionScoresAsync(this.speaker.Avatar);
+        //        // Display more emotion scores
+        //        //var scores = await EmotionService.GetAverageEmotionScoresAsync(this.speaker.Avatar);
 
-                //var buttonText = "YAY!";
-                //if (scores[0] < Config.HAPPINESS_LEVEL_THRESHOLD) // score[0] is happiness
-                //    buttonText = "Awww";
+        //        //var buttonText = "YAY!";
+        //        //if (scores[0] < Config.HAPPINESS_LEVEL_THRESHOLD) // score[0] is happiness
+        //        //    buttonText = "Awww";
 
-                //await DisplayAlert("Emotions Analysis", EmotionService.GetEmotionsMessage(scores), buttonText);
-            }
-            catch (Exception faceException)
-            {
-                await DisplayAlert("Oops!", faceException.Message, "Rats");
-            }
-        }
+        //        //await DisplayAlert("Emotions Analysis", EmotionService.GetEmotionsMessage(scores), buttonText);
+        //    }
+        //    catch (Exception faceException)
+        //    {
+        //        await DisplayAlert("Oops!", faceException.Message, "Rats");
+        //    }
+        //}
     }
 }

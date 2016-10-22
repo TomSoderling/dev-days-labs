@@ -24,23 +24,13 @@ namespace DevDaysSpeakers.View
             BindingContext = vm;
 
             // TODO: 23.) wire up ItemSelected event on the ListView
-            ListViewSpeakers.ItemSelected += ListViewSpeakers_ItemSelected;
-        }
-
-        // DELETE THIS METHOD
-        async void ListViewSpeakers_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var speaker = e.SelectedItem as Speaker;
-            if (speaker == null)
-                return;
-
-            await Navigation.PushAsync(new DetailsPage(speaker));
-
-            ListViewSpeakers.SelectedItem = null;
+            //ListViewSpeakers.ItemSelected += ListViewSpeakers_ItemSelected;
         }
 
 
-        // TODO: 24.) navigate to details page
+
+
+        // TODO: 24.) implementation: navigate to details page
         //var speaker = e.SelectedItem as Speaker;
         //if (speaker == null)
         //    return;
