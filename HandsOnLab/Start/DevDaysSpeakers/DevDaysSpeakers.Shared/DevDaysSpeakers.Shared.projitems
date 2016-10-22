@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\SpeakersPage.xaml.cs">
       <DependentUpon>SpeakersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SpeakerCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\DetailsPage.xaml">

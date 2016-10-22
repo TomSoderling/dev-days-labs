@@ -532,7 +532,7 @@ This will take about 3-5 minutes to setup, so let's head back to the code!
 ### Update AzureService.cs
 We will be using the [Azure Mobile Apps SDK](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-xamarin-forms-get-started/) to add an Azure back end to our mobile app in just a few lines of code.
 
-In the DevDaysSpeakers/Services/AzureService.cs file let's add in our url to the Initialize method.
+32.) In the DevDaysSpeakers/Services/AzureService.cs file let's add in our url to the Initialize method.
 
 ```csharp
  var appUrl = "https://OUR-APP-NAME-HERE.azurewebsites.net";
@@ -544,7 +544,7 @@ The Initialize logic will setup our database and create our `IMobileServiceSyncT
 
 
 #### GetSpeakers
-In this method we will need to Initialize, Sync, and query the table for items. We can use complex linq queries to order the results:
+33.) In this method we will need to Initialize, Sync, and query the table for items. We can use complex linq queries to order the results:
 
 ```csharp
 await Initialize();
@@ -553,19 +553,19 @@ return await table.OrderBy(s => s.Name).ToEnumerableAsync();
 ```
 
 #### SyncSpeakers
-Our azure backend has the ability to push any local chagnes and then pull all of the latest data from the server using the following code that can be added to the try inside of the SyncSpeakers method:
+34.) Our azure backend has the ability to push any local changes and then pull all of the latest data from the server using the following code that can be added to the try inside of the SyncSpeakers method:
 
 ```csharp
 await Client.SyncContext.PushAsync();
 await table.PullAsync("allSpeakers", table.CreateQuery());
 ```
-That is it for our Azure code! Just a few lines of code, and we are ready to grat the data from azure.
+That is it for our Azure code! Just a few lines of code, and we are ready to grab the data from azure.
 
 ### Update SpeakersViewModel.cs
 
 Update async Task GetSpeakers():
 
-Now, instead of using the HttpClient to get a string, let's query the Table:
+35.) Now, instead of using the HttpClient to get a string, let's query the Table:
 
 Change the *try* block of code to:
 
