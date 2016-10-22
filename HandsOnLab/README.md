@@ -122,7 +122,7 @@ Notice that we call **OnPropertyChanged();** whenever the value changes. The Xam
 
 #### ObservableCollection of Speaker
 
-We will use an **ObservableCollection<Speaker>** that will be cleared and then loaded with speakers. We will use this data collection because it has built-in support for **CollectionChanged** events when we Add or Remove from it. This is very nice so we don't have to call **OnPropertyChanged** each time.
+We will use an **ObservableCollection<Speaker>** that will be cleared and then loaded with speakers. We're going to use this type of data collection because it has built-in support for **CollectionChanged** events when we Add or Remove from it or refresh the list. This is very nice so we don't have to call **OnPropertyChanged** each time.
 
 5.) In the SpeakersViewModel class definition, declare an auto-property:
 
@@ -217,6 +217,10 @@ foreach (var item in items)
     Speakers.Add(item);
 ```
 
+
+*** Show implementation of AddRange() in ObservableCollection subclass
+
+
 14.) If anything goes wrong the **catch** will save the exception and AFTER the finally block we can pop up an alert:
 
 ```csharp
@@ -299,10 +303,13 @@ set
 
 ## The User Interface!!!
 It is now finally time to build out our first Xamarin.Forms user interface in the **View/SpeakersPage.xaml**
+Notice that even though we're working on the View - it's all still in the PCL project, meaning it's all shared code!
 
 ### SpeakersPage.xaml
 
-18.) For the first page we will add a few vertically-stacked controls to the page. We can use a StackLayout to do this. Between the `ContentPage` tags add the following:
+XAML is in the XML family and stands for Extensible Application Markup Language. Here we're using it to describe what our user interface will look like
+
+18.) For the first page we will add a few vertically-stacked controls to the page. We can use a Xamarin.Forms layout called StackLayout to do this. Between the `ContentPage` tags add the following:
 
 ```xml
  <StackLayout Spacing="0">
@@ -312,19 +319,19 @@ It is now finally time to build out our first Xamarin.Forms user interface in th
 
 This will be the container where all of the child controls will go. Notice that we specified the children should have no space in between them.
 
-Next, let's add a Button that has a binding to the **GetSpeakersCommand** that we created (see below). The command takes the place of a clicked handler and will be executed whenever the user taps the button.
+19.) Next, let's add a Button that has a binding to the **GetSpeakersCommand** that we created (see below). The command takes the place of a clicked handler and will be executed whenever the user taps the button.
 
 ```xml
 <Button Text="Sync Speakers" Command="{Binding GetSpeakersCommand}"/>
 ```
 
-Under the button we can display a loading bar when we are gathering data from the server. We can use an ActivityIndicator to do this and bind to the IsBusy property we created:
+20.) Under the button we can display a loading indicator when we are gathering data from the server. We can use an ActivityIndicator to do this and bind to the IsBusy property we created:
 
 ```xml
 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 ```
 
-We will use a ListView that binds to the Speakers collection to display all of the items. We can use a special property called *x:Name=""* to name any control:
+21.) We will use a ListView that binds to the Speakers collection to display all of the items. We can use a special property called *x:Name=""* to name any control:
 
 ```xml
 <ListView x:Name="ListViewSpeakers"
@@ -333,7 +340,8 @@ We will use a ListView that binds to the Speakers collection to display all of t
 </ListView>
 ```
 
-We still need to describe what each item looks like, and to do so, we can use an ItemTemplate that has a DataTemplate with a specific View inside of it. Xamarin.Forms contains a few default Cells that we can use, and we will use the **ImageCell** that has an image and two rows of text.
+22.) We still need to describe what each item looks like, and to do so, we can use the ItemTemplate property of the ListView and that takes a DataTemplate with a specific View inside of it. 
+Xamarin.Forms contains a few default Cells that we can use, and we will use the **ImageCell** that has an image and two rows of text.
 
 Replace <!--Add ItemTemplate Here--> with: 
 
@@ -388,13 +396,13 @@ Now, let's do some navigation and display some Details. Let's open up the code-b
 
 ### ItemSelected Event
 
-In the code-behind you will find the setup for the SpeakersViewModel. Under **BindingContext = vm;**, let's add an event to the **ListViewSpeakers** to get notified when an item is selected:
+23.) In the code-behind you will find the setup for the SpeakersViewModel. Under **BindingContext = vm;**, let's add an event to the **ListViewSpeakers** to get notified when an item is selected:
 
 ```csharp
 ListViewSpeakers.ItemSelected += ListViewSpeakers_ItemSelected;
 ```
 
-Implement this method so it navigates to the DetailsPage:
+24.) Implement this method so it navigates to the DetailsPage:
 
 ```csharp
 private async void ListViewSpeakers_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -413,7 +421,7 @@ In the above code we check to see if the selected item is not null and then use 
 
 ### DetailsPage.xaml
 
-Let's now fill in the DetailsPage. Similar to the SpeakersPage, we will use a StackLayout, but we will wrap it in a ScrollView in case we have long text.
+25.) Let's now fill in the DetailsPage. Similar to the SpeakersPage, we will use a StackLayout, but we will wrap it in a ScrollView in case we have long text.
 
 ```xml
   <ScrollView Padding="10">
@@ -423,7 +431,7 @@ Let's now fill in the DetailsPage. Similar to the SpeakersPage, we will use a St
   </ScrollView>
 ```
 
-Now, let's add controls and bindings for the properties in the Speaker object:
+26.) Now, let's add controls and bindings for the properties in the Speaker object:
 
 ```xml
 <Image Source="{Binding Avatar}" HeightRequest="200" WidthRequest="200"/>
@@ -433,7 +441,7 @@ Now, let's add controls and bindings for the properties in the Speaker object:
 <Label Text="{Binding Description}"/>
 ```
 
-Add two buttons. Give them names so we can add clicked handlers to them in the code behind:
+27.) Add two buttons. Give them names so we can add clicked handlers to them in the code behind:
 
 ```xml
 <Button Text="Speak" x:Name="ButtonSpeak"/>
@@ -442,15 +450,15 @@ Add two buttons. Give them names so we can add clicked handlers to them in the c
 
 ### Text to Speech
 
-If we open up **DetailsPage.xaml.cs** we can now add a few more click handlers. Let's start with ButtonSpeak, where we will use the [Text To Speech Plugin](https://github.com/jamesmontemagno/TextToSpeechPlugin) to read back the speaker's description.
+If we open up **DetailsPage.xaml.cs** we can now add a few more click handlers. Let's start with the button named "ButtonSpeak", where we will use the [Text To Speech Plugin](https://github.com/jamesmontemagno/TextToSpeechPlugin) to read back the speaker's description.
 
-In the constructor, add a clicked handler below the BindingContext:
+28.) In the constructor, add a clicked handler below the BindingContext:
 
 ```csharp
 ButtonSpeak.Clicked += ButtonSpeak_Clicked;
 ```
 
-Then we can add the clicked handler and call the cross-platform API for text to speech:
+29.) Then we can add the clicked handler and call the cross-platform API for text to speech:
 
 ```csharp
 private void ButtonSpeak_Clicked(object sender, EventArgs e)
