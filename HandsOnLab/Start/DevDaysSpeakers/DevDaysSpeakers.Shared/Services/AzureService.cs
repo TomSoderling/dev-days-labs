@@ -51,7 +51,7 @@ namespace DevDaysSpeakers.Services
 
         public async Task<IEnumerable<Speaker>> GetSpeakers()
         {
-            return new List<Speaker>();
+            throw new NotImplementedException("this will be implemented later when we hook to Azure service");
 
             // TODO: 33.) get speakers from SQLite database table
             //await Initialize();
