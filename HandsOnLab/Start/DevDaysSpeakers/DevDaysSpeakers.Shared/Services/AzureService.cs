@@ -52,8 +52,6 @@ namespace DevDaysSpeakers.Services
 
         public async Task<IEnumerable<Speaker>> GetSpeakers()
         {
-            //return new List<Speaker>();
-
             // get speakers from SQLite database table
             await Initialize();
             await SyncSpeakers();
