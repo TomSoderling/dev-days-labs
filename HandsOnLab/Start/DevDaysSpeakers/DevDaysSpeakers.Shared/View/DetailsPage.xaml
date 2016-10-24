@@ -4,26 +4,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Details">
 
-	
-<!-- TODO: 25.) StackLayout in a ScrollView -->	
-<!--	  <ScrollView Padding="10">-->
-<!--    <StackLayout Spacing="10">-->
-     <!-- Detail controls here -->
-<!--    </StackLayout>    -->
-<!--  </ScrollView>-->
 
-	
-<!-- TODO: 26.) Controls for details -->
-<!--<Image Source="{Binding Avatar}" HeightRequest="200" WidthRequest="200"/>
-<Label Text="{Binding Name}" FontSize="24"/>
-<Label Text="{Binding Title}" TextColor="Purple"/>
-<Label Text="{Binding Description}"/>-->
+    <ScrollView Padding="10">
+        <StackLayout Spacing="10">
+            <Image WidthRequest="200"
+                   HeightRequest="200"
+                   Source="{Binding Avatar}" />
+            <Label FontSize="24" Text="{Binding Name}" />
+            <Label Text="{Binding Title}" TextColor="Purple" />
+            <Label Text="{Binding Description}" />
 
-	
-<!-- TODO: 27.) buttons for fancy things -->
-<!--<Button Text="Speak" x:Name="ButtonSpeak"/>
-<Button Text="Go to Website" x:Name="ButtonWebsite"/>
-<Button x:Name="ButtonSpecial" Text="Analyze" />-->
+            <Button x:Name="ButtonSpeak" Text="Speak" />
+            <Button x:Name="ButtonWebsite" Text="Go to Website" />
+            <Button x:Name="ButtonSpecial" Text="Analyze" />
 
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>
