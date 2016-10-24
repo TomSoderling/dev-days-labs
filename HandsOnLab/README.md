@@ -7,7 +7,7 @@ Those numbers (1-35) line up with numbered TODO comments in the code, so just op
 
 
 #### What's in the Branches?
-* master: this is Xamarin's "Start" solution + TODOs + commented out code for all the steps.
+* master: Fork from Xamarin + changes to "Start" solution: TODOs + commented out code for all the steps.
 * finished: what the lab looks like when it's finished. It's the master branch + all code un-commented + TODOs removed + 1st Bonus Take Home Challenges (Cognitive Services)
 
 
