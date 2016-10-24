@@ -6,7 +6,7 @@ This helps the presenter to focus on explaining what the code does, instead of c
 Those numbers (1-35) line up with numbered TODO comments in the code, so just open the Tasks pad (XS) or Task List (VS) to see all of them and it will also help you make sure that all necessary code gets uncommented as you go through the lab.
 
 
-What's in the Branches?
+#### What's in the Branches?
  master: this is Xamarin's "Start" solution + TODOs + commented-out code for all the steps.
  finished: what the lab looks like when it's finished. master branch with all code un-commented, and TODOs removed.
 
