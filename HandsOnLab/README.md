@@ -1,5 +1,8 @@
 ## This is Tom's Presenter Copy
-This custom set of instructions includes numbers at the points in the lab where code changes need to be made. This helps the presenter to focus on explaining what the code does, instead of copy/pasting it in, or typing it in, a.k.a "live coding" (don't!).
+This custom set of instructions includes numbers at the points in the lab where code changes need to be made. 
+
+This helps the presenter to focus on explaining what the code does, instead of copy/pasting it in, or typing it in, a.k.a "live coding" (don't!).
+
 Those numbers (1-35) line up with numbered TODO comments in the code, so just open the Tasks pad (XS) or Task List (VS) to see all of them and it will also help you make sure that all necessary code gets uncommented as you go through the lab.
 
 
