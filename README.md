@@ -8,7 +8,8 @@ Inside this repo you will find all of the presentations, demos, and hands on lab
 
 
 
-Tom's Edit:
+
+## Tom's Edit: ##
 
 Added a few slides to the deck for the Hands On Lab, to be clear about:
  - Directions on environment setup (a lot of people seemed to miss this in the dev days invitation)
